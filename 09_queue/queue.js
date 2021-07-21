@@ -35,6 +35,7 @@ class Queue {
         }
         const val = this.head.ele
         this.head = this.head.next
+        this.tail.next = this.head
         return val
     }
 }
