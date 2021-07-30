@@ -1,13 +1,9 @@
-### Algorithm for JavaScript
+## Algorithm
 
-#### Dir
+- LeetCode
 
-08. 栈
+LeetCode algo pritice 
 
-09. 队列
+- study
 
-11. 冒泡 插入 选择  O(n^2)
-
-12. 归并 快速   O(nlogn)
-
-13. 桶 基数 计数    O(n)
+Algorithm base study
