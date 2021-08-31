@@ -1,4 +1,5 @@
 // 计数排序
+// 把数字放到空数组对应位数，然后循环取出
 
 function countingSort(array) {
     var len = array.length,
