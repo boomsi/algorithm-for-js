@@ -1,4 +1,4 @@
-// 冒泡
+// 冒泡排序
 function sort_buble(list) {
   const res = [...list];
   const len = list.length;

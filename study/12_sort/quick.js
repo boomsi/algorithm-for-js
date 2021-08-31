@@ -24,9 +24,9 @@
 //   return pivotIndex;
 // }
 
-a = [7, -2, 4, 1, 6, 5, 0, -4, 0, 2];
-sort_quick(a);
-console.log(a);
+// a = [7, -2, 4, 1, 6, 5, 0, -4, 0, 2];
+// sort_quick(a);
+// console.log(a);
 
 // module.exports = sort_quick;
 
@@ -59,30 +59,33 @@ console.log(a);
 //     return pivotIndex
 // }
 
-// a = [7, -2, 4, 1, 6, 5, 0, -4, 0, 2];
-// sort_quick(a);
-// console.log(a);
+a = [7, -2, 4, 1, 6, 5, 0, -4, 0, 2];
+sort_quick(a);
+console.log(a);
 
-function sort_quick(list, start = 0, end = list.length - 1) {
-  if (start > end) {
-    return list
-  }
-  
-  const pivot = loop(list, start, end)
+function sort_quick(arr = [], start = 0, end = arr.length - 1) {
+    if (start >= end) {
+        return;
+    }
 
-  sort_quick(list, start, pivot - 1)
-  sort_quick(list, pivot + 1, end)
+    const pivot = getPivot(arr, start, end);
+
+    sort_quick(arr, start, pivot - 1);
+    sort_quick(arr, pivot + 1, end);
+
 }
 
-function loop(list, start, end) {
-  let v = start
-
-  for(let i = start; i < end; i ++) {
-    if (list[i] < list[end]) {
-      [list[i], list[v]] = [list[v], list[i]]
-      v ++
+function getPivot(arr, start, end) {
+    let pivotIndex = start;
+    let val = arr[end];
+    for (let i = start; i < end; i++) {
+        if (arr[i] < val) {
+            [arr[pivotIndex], arr[i]] = [arr[i], arr[pivotIndex]];
+            pivotIndex++;
+        }
     }
-  }
-  [list[v], list[end]] = [list[end], list[v]]
-  return v
+
+    [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+
+    return pivotIndex;
 }

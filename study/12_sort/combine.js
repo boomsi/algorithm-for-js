@@ -1,4 +1,4 @@
-// 归并
+// 归并排序
 
 // function sort_combine(list) {
 //     return loop(list, list.length)
@@ -38,8 +38,8 @@
 //     return res
 // }
 
-a = sort_combine([2, 4, 8, 1]);
-// a = sort_combine([2, 4, 8, 4, 2, 4, 7,111, 43, 231, 453, 5, 0, 12])
+// a = sort_combine([2, 4, 8, 1]);
+a = sort_combine([2, 4, 8, 4, 2, 4, 7,111, 43, 231, 453, 5, 0, 12])
 console.log(a);
 
 
@@ -52,15 +52,14 @@ function loop(arr) {
     if (arr.length <= 1) return arr;
 
     const midIndex = Math.ceil(arr.length / 2);
-    child1 = loop(arr.slice(0, midIndex));
-    child2 = loop(arr.slice(midIndex));
-    console.log(child1, child2, '?')
+
+    let child1 = loop(arr.slice(0, midIndex));
+    let child2 = loop(arr.slice(midIndex));
     return combine(child1, child2);
 }
 
 function combine(arr1, arr2) {
     const res = [];
-    console.log(arr1, arr2)
     let i = 0,
         j = 0;
 
@@ -73,14 +72,12 @@ function combine(arr1, arr2) {
             j++;
         }
     }
-    // console.log(res, i, j)
     if (i < arr1.length) {
-        res.push(...arr1.slice(j));
+        res.push(...arr1.slice(i));
     }
     if (j < arr2.length) {
-        res.push(...arr2.slice(i));
+        res.push(...arr2.slice(j));
     }
-
     return res;
 }
 

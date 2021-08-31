@@ -1,4 +1,4 @@
-// 插入
+// 插入排序
 function sort_insert(list) {
   const len = list.length;
   const res = [...list];

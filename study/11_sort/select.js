@@ -1,4 +1,4 @@
-// 选择
+// 选择排序
 
 function sort(list) {
   const res = [];
