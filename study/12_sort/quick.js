@@ -63,29 +63,55 @@ a = [7, -2, 4, 1, 6, 5, 0, -4, 0, 2];
 sort_quick(a);
 console.log(a);
 
-function sort_quick(arr = [], start = 0, end = arr.length - 1) {
-    if (start >= end) {
-        return;
-    }
+// function sort_quick(arr = [], start = 0, end = arr.length - 1) {
+//     if (start >= end) {
+//         return;
+//     }
 
-    const pivot = getPivot(arr, start, end);
+//     const pivot = getPivot(arr, start, end);
 
-    sort_quick(arr, start, pivot - 1);
-    sort_quick(arr, pivot + 1, end);
+//     sort_quick(arr, start, pivot - 1);
+//     sort_quick(arr, pivot + 1, end);
 
+// }
+
+// function getPivot(arr, start, end) {
+//     let pivotIndex = start;
+//     let val = arr[end];
+//     for (let i = start; i < end; i++) {
+//         if (arr[i] < val) {
+//             [arr[pivotIndex], arr[i]] = [arr[i], arr[pivotIndex]];
+//             pivotIndex++;
+//         }
+//     }
+
+//     [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+
+//     return pivotIndex;
+// }
+
+
+function sort_quick(arr, start = 0, end = arr.length - 1) {
+    if (start >= end) return;
+
+    const pivot = getPivot(arr, start, end)
+    
+    sort_quick(arr, start, pivot - 1)
+    sort_quick(arr, pivot + 1, end)
 }
 
 function getPivot(arr, start, end) {
-    let pivotIndex = start;
-    let val = arr[end];
-    for (let i = start; i < end; i++) {
-        if (arr[i] < val) {
-            [arr[pivotIndex], arr[i]] = [arr[i], arr[pivotIndex]];
-            pivotIndex++;
+    const pivotValue = arr[end]
+    let index = start
+
+    for(let i = start; i < end; i ++) {
+        if (arr[i] < pivotValue) {
+            [arr[i], arr[index]] = [arr[index], arr[i]]
+            index ++
         }
     }
 
-    [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
+    [arr[end], arr[index]] = [arr[index], arr[end]]
 
-    return pivotIndex;
+    return index
 }
