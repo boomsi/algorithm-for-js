@@ -79,42 +79,81 @@ console.log(a);
 //     return res;
 // }
 
-function sort_combine(arr) {
-    return loop(arr);
+// function sort_combine(arr) {
+//     return loop(arr);
+// }
+
+// function loop(arr) {
+//     if (arr.length <= 1) return arr;
+
+//     const index = Math.floor(arr.length / 2);
+
+//     const arr1 = loop(arr.slice(0, index));
+//     const arr2 = loop(arr.slice(index));
+
+//     return combine(arr1, arr2);
+// }
+
+// function combine(arr1, arr2) {
+//     let index1 = 0, index2 = 0, len1 = arr1.length, len2 = arr2.length
+//     const res = []
+
+//     while(index1 < len1 && index2 < len2) {
+//         if (arr1[index1] > arr2[index2]) {
+//             res.push(arr2[index2])
+//             index2 ++
+//         } else {
+//             res.push(arr1[index1])
+//             index1 ++
+//         }
+//     }
+
+//     if (index1 < len1) {
+//         res.push(...arr1.slice(index1))
+//     }
+
+//     if (index2 < len2) {
+//         res.push(...arr2.slice(index2))
+//     }
+//     return res
+// }
+
+
+function sort_combine(list) {
+    return loop(list)
 }
 
-function loop(arr) {
-    if (arr.length <= 1) return arr;
+function loop(list) {
+    if (list.length <= 1) return list
+    const mid = Math.floor(list.length / 2)
 
-    const index = Math.floor(arr.length / 2);
+    const arr1 = loop(list.slice(0, mid))
+    const arr2 = loop(list.slice(mid))
 
-    const arr1 = loop(arr.slice(0, index));
-    const arr2 = loop(arr.slice(index));
-
-    return combine(arr1, arr2);
+    return combine(arr1, arr2)
 }
 
 function combine(arr1, arr2) {
-    let index1 = 0, index2 = 0, len1 = arr1.length, len2 = arr2.length
+    let i = 0, j = 0;
     const res = []
 
-    while(index1 < len1 && index2 < len2) {
-        if (arr1[index1] > arr2[index2]) {
-            res.push(arr2[index2])
-            index2 ++
+    while(i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            res.push(arr1[i])
+            i ++
         } else {
-            res.push(arr1[index1])
-            index1 ++
+            res.push(arr2[j])
+            j ++
         }
     }
 
-    if (index1 < len1) {
-        res.push(...arr1.slice(index1))
+    if (i < arr1.length) {
+        res.push(...arr1.slice(i))
+    }
+    if (j < arr2.length) {
+        res.push(...arr2.slice(j))
     }
 
-    if (index2 < len2) {
-        res.push(...arr2.slice(index2))
-    }
     return res
 }
 
