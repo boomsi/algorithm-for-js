@@ -37,37 +37,37 @@ function ListNode(val, next) {
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists = function (lists) {
-    if (!lists.length) return null;
-    if (lists.length === 1) return lists[0];
+// var mergeKLists = function (lists) {
+//     if (!lists.length) return null;
+//     if (lists.length === 1) return lists[0];
 
-    let tmp = [];
+//     let tmp = [];
 
-    for (let i = 0; i < lists.length; i++) {
-        let next = lists[i];
-        while (next) {
-            tmp.push(next.val);
-            next = next.next;
-        }
-    }
-    tmp = tmp.sort((a, b) => a - b);
+//     for (let i = 0; i < lists.length; i++) {
+//         let next = lists[i];
+//         while (next) {
+//             tmp.push(next.val);
+//             next = next.next;
+//         }
+//     }
+//     tmp = tmp.sort((a, b) => a - b);
 
-    let list = new ListNode(tmp[0]);
-    let head = list
-    tmp.forEach(i => {
-        head.next = new ListNode(i)
-        head = head.next
-    })
-    return list.next;
-};
+//     let list = new ListNode(tmp[0]);
+//     let head = list;
+//     tmp.forEach((i) => {
+//         head.next = new ListNode(i);
+//         head = head.next;
+//     });
+//     return list.next;
+// };
 
 const a = [
     { val: 1, next: { val: 4, next: { val: 5, next: null } } },
     { val: 1, next: { val: 3, next: { val: 4, next: null } } },
     { val: 2, next: { val: 6, next: null } },
 ];
-const res = mergeKLists(a);
-console.dir(res, { depth: null });
+// const res = mergeKLists(a);
+// console.dir(res, { depth: null });
 
 // var mergeKLists = function (lists) {
 //     return lists
@@ -80,3 +80,32 @@ console.dir(res, { depth: null });
 //         .sort((a, b) => a.val - b.val)
 //         .reduceRight((p, n) => ((n.next = p), (p = n), p), null);
 // };
+
+function mergeKLists(lists) {
+    return lists
+        .reduce((arr, list) => {
+            while (list) {
+                arr.push(list);
+                list = list.next;
+            }
+            return arr;
+        }, [])
+        .sort((a, b) => a.val - b.val)
+        .reduceRight((link, n) => ((n.next = link), (link = n), link), null);
+}
+
+// 数组转链表
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const lists = arr.reduceRight((res, n) => ((n = new ListNode(n)), (n.next = res), (res = n), res), null);
+console.dir(lists, { depth: null });
+
+// 链表转数组
+const arrs = ((n) => {
+    const res = [];
+    while (n) {
+        res.push(n.val);
+        n = n.next;
+    }
+    return res;
+})(lists);
+console.log(arrs);
